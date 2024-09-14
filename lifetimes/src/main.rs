@@ -1,3 +1,9 @@
+use std::fmt::Display;
+
+struct ImportantExcerpt<'a>{
+    part: &'a str,
+}//lifetime annotation for structs
+
 fn main() {
     //r is a dangling reference as x lifetime ends 
     /*
@@ -51,6 +57,42 @@ fn main() {
         let result = longest1(str3.as_str(), str4.as_str());
     }
     println!("the longest string is: {}", result);
+
+    // annotation for structs
+    let car = String::from("Porsche 918 spyder");
+    let car_company = car.split(" ").next().expect("could not found");
+    let i = ImportantExcerpt{
+        part: car_company,
+    };
+
+    //lifetime elisions
+    // 1. Each parameter that is a reference gets its own lifetime parameter
+    // 2. If there is exactly one input lifetime parameter, that lifetime is 
+    // assigned to all output lifetime parameters
+    // 3. If there are multiple input lifetime parameters, but one of them is 
+    // &self or &mut self the lifetime of self is assigned to all output lifetime parameters.
+
+
+    //static lifetime
+    let s:&'static str = "this has a static lifetime"; //the reference could live uptil the total duration
+    // all string literals have static lifetime cause they are stored in program's binary
+
+    //traits, generics and lifetime all in ome example
+    fn longest_with_an_announcement<'a, T>(
+        x: &'a str,
+        y: &'a str,
+        ann: T,
+     ) -> &'a str
+    where
+        T: Display,
+    {
+        println!("Announcement! {}", ann);
+        if x.len() > y.len(){
+            x
+       } else{
+            y
+       }
+    }    
 }                         
 
 // as the function has no idea of the lifetimes of the passed value when we try to return some value
