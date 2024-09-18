@@ -1,7 +1,7 @@
 use  std::env;
 use std::process; //exit the program without panicking
 
-use minigrep::Config;
+use iter_minigrep::Config;
 
 fn main() {
 
@@ -13,7 +13,7 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.filename);
 
-    if let Err(e) = minigrep::run(config){
+    if let Err(e) = iter_minigrep::run(config){
         eprintln!("Application Error: {}", e); //eprintln for printing error string
         process::exit(1);
     }
