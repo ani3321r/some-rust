@@ -1,0 +1,9 @@
+[package]
+name = "raiden_api_crate"
+version = "0.1.0"
+author = ["Raiden"]
+edition = "2021"
+description = "A lib for modeling colors"
+license = "MIT"
+
+[dependencies]
