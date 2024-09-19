@@ -1,0 +1,14 @@
+[package]
+name = "my_crate"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+# there are three opt levels 0, 1, 2, 3(optimization level)
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
