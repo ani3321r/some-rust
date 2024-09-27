@@ -70,4 +70,28 @@ fn main() {
 
     let (a, b, _) = (4, 5, 6); // to solve the error
 
+
+    // in func parameters
+    let pnt = (6, 8);
+    print_coordinates(&pnt);
+
+
+    // irrefutable patterns
+    let x = 10; //always match
+
+    // Refutable patterns
+    let x: Option<&str> = None;
+    if let Some(x) = x {
+        println!("{}", x);
+    } ;
+
+    // can only accept irrefutable patterns:
+    // func params
+    // let statements
+    // for loops
+}
+
+// function parameters
+fn print_coordinates(&(x, y): &(i32, i32)){
+    println!("current location: ({}, {})", x, y);
 }
