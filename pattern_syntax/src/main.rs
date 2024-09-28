@@ -187,6 +187,54 @@ fn main() {
             println!("Some nums: {}, {}", first, last);
         }
     }
+
+
+    // match guards
+    let num3 = Some(9);
+
+    match num3{
+        Some(x) if x < 10 => println!("less than ten: {}", x),
+        Some(x) => println!("{}", x),
+        None => (),
+    }
+
+    // match guard solve issues with shadowing
+    let x5 = Some(6);
+    let y5 = 20;
+
+    match x5{
+        Some(n) if n == y5 => println!("Matched, n = {}", n),
+        _ => println!("Default case, x = {:?}", x),
+    }
+
+    // multiple patterns
+    let x6 = 3;
+    let y6 = false;
+
+    match x6{
+        3 | 5| 7 if y6 => println!("yes"),
+        _ => println!("no"),
+    }
+
+
+    // @ operator(used to store as well as test the value at the same time)
+    enum Message2{
+        Hello {id: i32},
+    }
+
+    let msg = Message2::Hello { id: 10 };
+
+    match msg{
+        Message2::Hello { 
+            id: id_var @ 6..=10, 
+        } => println!("found id in range: {}", id_var),
+        Message2::Hello {id: 12..=14} => {
+            println!("found another range")
+        }
+        Message2::Hello{id} => {
+            println!("found another id: {}", id)
+        }
+    }
 }
 
 fn foo(_: i32, y: i32){ // by using "_" we are ignoring the first arg
