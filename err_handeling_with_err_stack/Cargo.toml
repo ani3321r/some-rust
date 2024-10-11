@@ -1,0 +1,9 @@
+[package]
+name = "err_handeling_with_err_stack"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+error-stack = "0.1.1"
+log = "0.4.22"
+env_logger = "0.11.5"
